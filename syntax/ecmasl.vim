@@ -4,11 +4,18 @@ syn match eslNumber "\<[0-9]\+\>\|\<[0-9_]\+\>\|\<0[xX][0-9a-fA-F_]\+\>\|\<0[oO]
 syn match eslFloat "\<[0-9]\+\.[0-9_]\+\([eE][-+]\=[0-9_]\+\)\=\>"
 syn keyword eslValues PI MAX_VALUE MIN_VALUE None 'null null 'undefined undefined true false NaN Infinity
 syn region eslComment start="/\*" end="\*/"
+      \ contains =
+      \ eslComment,
+      \ eslTodo,
+      \ @Spell
+syn keyword eslTodo TODO FIXME contained
 syn region eslString start=+"+ end=+"+ skip=+\\"+
 syn keyword eslConditional if else elif
 syn keyword eslRepeat while foreach repeat until
 syn keyword eslLabel default switch case sdefault
-syn keyword eslKeyword function return delete match with lambda assert 
+syn keyword eslFunction function
+syn keyword eslKeyword return delete lambda assert 
+syn keyword eslMatch match with
 syn keyword eslException catch throw fail
 syn keyword eslMacro macro
 syn keyword eslImport import extern
@@ -24,6 +31,7 @@ highlight def link eslValues Constant
 highlight def link eslNumber Number
 highlight def link eslFloat Float
 highlight def link eslComment Comment
+highlight def link eslTodo Todo
 highlight def link eslString String
 highlight def link eslConditional Conditional
 highlight def link eslRepeat Repeat
@@ -32,3 +40,5 @@ highlight def link eslKeyword Keyword
 highlight def link eslException Exeption
 highlight def link eslDelimiter Delimiter
 highlight def link eslOperator Operator
+highlight def link eslMatch Structure
+highlight def link eslFunction Structure
