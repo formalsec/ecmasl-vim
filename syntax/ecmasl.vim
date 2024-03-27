@@ -51,6 +51,5 @@ syn match eslEscape "\\."
 hi def link eslEscape SpecialChar
 
 " Type Annotations (after colon)
-syn match eslTypeAnnotation ":\<\(\k\+\)\>"
+syn match eslTypeAnnotation ":\s*\zs\(\k\+\)"
 hi def link eslTypeAnnotation Type
-
