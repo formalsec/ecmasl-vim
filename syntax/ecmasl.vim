@@ -51,7 +51,7 @@ hi def link eslLabel Label
 syn keyword eslFunction function
 hi def link eslFunction Structure
 
-syn keyword eslKeyword return delete lambda assert
+syn keyword eslKeyword return delete lambda assert let
 hi def link eslKeyword Keyword
 
 syn keyword eslMatch match with
