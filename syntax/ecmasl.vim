@@ -42,11 +42,11 @@ hi def link eslComment Comment
 
 syn keyword eslTodo TODO FIXME contained
 hi def link eslTodo Todo
+
 syn keyword eslType any int string float bool void list tuple object char
 hi def link eslType Type
 
 syn match eslFunctionCall "\<\w\+\ze\s*("
-...
 hi def link eslFunctionCall Function
 
 syn match eslFunctionDecl "\<function\s\+\zs\w\+"
