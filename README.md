@@ -1,19 +1,18 @@
-# ECMA-SL Neovim Plugin
+# ECMA-SL Neovim Plugin (Tree-sitter)
 
-Vim/Neovim plugin for the ECMA-SL (ECMAScript-like) language, featuring Tree-sitter support.
+Neovim plugin for the ECMA-SL (ECMAScript-like) language, providing syntax highlighting via Tree-sitter.
+
+**Note**: This plugin requires Neovim and `nvim-treesitter`. It no longer includes the legacy regex-based syntax highlighter.
 
 ## Features
 
 - **Tree-sitter Support**: Highly accurate syntax highlighting, indentation, and folding.
-- **Vim Syntax Support**: Fallback regex-based highlighting for older Vim versions.
 - **Filetype Detection**: Automatically handles `.esl` files.
 - **Nix Support**: Includes a Nix flake and `default.nix` for easy installation with NixOS and home-manager.
 
 ## Installation
 
-### Neovim with `nvim-treesitter` (Recommended)
-
-#### With NixOS and home-manager
+### With NixOS and home-manager (Recommended)
 
 Add this to your `home.nix`:
 
@@ -48,19 +47,18 @@ Add this to your `home.nix`:
 }
 ```
 
-Then, in your Neovim config, ensure `nvim-treesitter` is set up and that `ecmasl` is in your list of highlighted languages:
+Then, in your Neovim config, ensure `nvim-treesitter` is set up:
 
 ```lua
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { "c", "lua" }, -- etc.
+  -- ensure_installed = { "c", "lua", "ecmasl" }, -- You can add ecmasl here
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = false,
   },
 }
 ```
 
-#### With `lazy.nvim`
+### With `lazy.nvim`
 
 ```lua
 {
@@ -68,6 +66,7 @@ require('nvim-treesitter.configs').setup {
   dependencies = { "nvim-treesitter/nvim-treesitter" },
   config = function()
     require("ecmasl").setup()
+    -- You may need to run :TSInstall ecmasl if not using Nix
   end
 }
 ```
