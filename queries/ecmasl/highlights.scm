@@ -35,10 +35,6 @@
 (call_expr_target function: (identifier) @function)
 (call_expr_target function: (no_blocklike_expr_target (val_expr_target (val_target (string))))) @function
 
-; Distinguish function parameters from standard variables
-(func_tparams_target (typed_id_target (identifier) @variable.parameter))
-(func_params_target (identifier) @variable.parameter)
-
 ; Variables and Identifiers
 (identifier) @variable
 (gid) @variable.builtin
@@ -101,6 +97,15 @@
 ; Mark the '@' in your custom call syntax
 (exec_stmt_target "@" @function.macro)
 
+; Function Parameters
+; Added '.' (anchor) and field names for better accuracy
+(func_params_target (identifier) @variable.parameter)
+(typed_id_target (identifier) @variable.parameter)
+(ctx_vars_target (identifier) @variable.parameter)
+
 ; Object properties (initialization and lookup)
 (field_init_target (identifier) @property)
 (lookup_target (identifier) @property)
+
+; Labels or specific patterns
+(match_discrm_target (identifier) @variable.parameter)
