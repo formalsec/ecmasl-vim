@@ -42,8 +42,11 @@ hi def link eslComment Comment
 
 syn keyword eslTodo TODO FIXME contained
 hi def link eslTodo Todo
+syn keyword eslType any int string float bool void list tuple object char
+hi def link eslType Type
 
 syn match eslFunctionCall "\<\w\+\ze\s*("
+...
 hi def link eslFunctionCall Function
 
 syn match eslFunctionDecl "\<function\s\+\zs\w\+"
@@ -64,8 +67,14 @@ hi def link eslLabel Label
 syn keyword eslFunction function
 hi def link eslFunction Structure
 
-syn keyword eslKeyword return delete lambda assert let
+syn keyword eslKeyword return delete lambda assert let typedef
 hi def link eslKeyword Keyword
+
+syn match eslTypedefDecl "\<typedef\s\+\zs\w\+"
+hi def link eslTypedefDecl Typedef
+
+syn match eslObjectKey "\<\w\+\ze\s*:"
+hi def link eslObjectKey Identifier
 
 syn keyword eslMatch match with
 hi def link eslMatch Keyword
