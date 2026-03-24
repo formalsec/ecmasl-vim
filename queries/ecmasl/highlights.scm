@@ -1,32 +1,12 @@
-; Keywords
+; Standard keywords
+[ "let" "import" "typedef" "macro" "function" "extern" "lambda" ] @keyword
+
+; Control Flow (often colored differently, like purple or red)
 [
-  "let"
-  "import"
-  "typedef"
-  "macro"
-  "function"
-  "print"
-  "return"
-  "delete"
-  "extern"
-  "lambda"
-  "assert"
-  "fail"
-  "throw"
-  "catch"
-  "if"
-  "else"
-  "while"
-  "foreach"
-  "repeat"
-  "until"
-  "switch"
-  "case"
-  "default"
-  "match"
-  "with"
-  "sigma"
-] @keyword
+  "if" "else" "while" "foreach" "repeat" "until"
+  "switch" "case" "default" "match" "with"
+  "return" "throw" "catch" "fail" "assert"
+] @keyword.control
 
 ; Types
 [
@@ -41,17 +21,23 @@
   "string"
   "boolean"
   "symbol"
-] @type
+] @type.builtin
 
 (type_target (identifier) @type)
-(tdef_target name: (identifier) @type)
+; Typedef names are technically "definitions"
+(tdef_target name: (identifier) @type.definition)
 (typing_target (type_target (identifier) @type))
 
+
 ; Functions
-(func_target name: (identifier) @function)
+(func_target name: (identifier) @function.method)
 (macro_target name: (identifier) @function)
 (call_expr_target function: (identifier) @function)
 (call_expr_target function: (no_blocklike_expr_target (val_expr_target (val_target (string))))) @function
+
+; Distinguish function parameters from standard variables
+(func_tparams_target (typed_id_target (identifier) @variable.parameter))
+(func_params_target (identifier) @variable.parameter)
 
 ; Variables and Identifiers
 (identifier) @variable
@@ -111,3 +97,10 @@
 ] @function.builtin)
 
 (binopt_target "in_obj" @function.builtin)
+
+; Mark the '@' in your custom call syntax
+(exec_stmt_target "@" @function.macro)
+
+; Object properties (initialization and lookup)
+(field_init_target (identifier) @property)
+(lookup_target (identifier) @property)
