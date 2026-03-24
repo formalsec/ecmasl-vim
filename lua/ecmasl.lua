@@ -1,11 +1,21 @@
 local M = {}
 
 function M.setup()
-  -- For NixOS users, the parser should be available in the runtime path.
-  -- We just need to tell nvim-treesitter to use it.
-  require("nvim-treesitter.parsers").get_parser_configs().ecmasl = {
-    filetype = "esl",
+  -- Manual registration for custom parser
+  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+  parser_config.ecmasl = {
+    install_info = {
+      url = "https://github.com/formalsec/ecmasl-vim",
+      files = {"src/parser.c"},
+    },
+    filetype = "ecmasl",
   }
+
+  vim.filetype.add({
+    extension = {
+      esl = "ecmasl", -- Change 'esl' to your actual extension
+    },
+  })
 end
 
 return M
