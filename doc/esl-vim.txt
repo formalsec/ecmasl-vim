@@ -1,3 +1,43 @@
-*esl-vim.txt*
-===============================================================================
-===============================================================================
+*esl-vim.txt*   Vim syntax highlighting for ECMA-SL.
+
+Author:  Filipe
+License: MIT
+
+==============================================================================
+1. Introduction                                     *ecmasl-introduction*
+
+This plugin provides syntax highlighting, indentation, and filetype
+detection for ECMA-SL, an ECMAScript-like language.
+
+==============================================================================
+2. Configuration                                    *ecmasl-configuration*
+
+The plugin automatically detects files with the `.esl` extension and
+sets the filetype to `ecmasl`.
+
+The `commentstring` is set to `// %s` to support commenting with plugins
+like `vim-commentary` or `nerdcommenter`.
+
+`iskeyword` includes `'` to support single-quote characters in identifiers
+common in some functional styles or language variations.
+
+==============================================================================
+3. Syntax Highlighting Features                     *ecmasl-syntax*
+
+- Keywords: `if`, `else`, `elif`, `while`, `foreach`, `repeat`, `until`,
+  `default`, `switch`, `case`, `sdefault`, `function`, `return`, `delete`,
+  `lambda`, `assert`, `let`, `match`, `with`, `catch`, `throw`, `fail`,
+  `macro`, `import`, `extern`.
+- Booleans: `true`, `false`.
+- Constants: `PI`, `MAX_VALUE`, `MIN_VALUE`, `None`, `null`, `undefined`,
+  `NaN`, `Infinity`.
+- Strings: Double-quoted strings with support for escape sequences
+  (`\n`, `\t`, `\uXXXX`, etc.).
+- Numbers: Support for decimal, hexadecimal, octal, binary, and floats.
+- Comments: Both single-line (`//`) and multi-line (`/* */`) comments.
+- Functions: Function calls and declarations are highlighted.
+- Operators: Arithmetic, comparison, and logical operators are highlighted.
+- Stdlib: Standard library functions are recognized and highlighted.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
