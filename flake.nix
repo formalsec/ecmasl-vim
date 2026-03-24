@@ -1,24 +1,30 @@
 {
-  description = "A flake for ecmasl-vim";
+  description = "ECMA-SL Tree-sitter grammar and Vim plugin";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs = { self, nixpkgs, utils }:
+    utils.lib.eachDefaultSystem (system:
       let
-        pkgs = nixpkgs.legacyPackages.${system};
-        ecmasl-vim = pkgs.vimUtils.buildVimPlugin {
-          name = "ecmasl-vim";
-          src = self;
-          buildInputs = [ pkgs.tree-sitter ];
+        pkgs = import nixpkgs { inherit system; };
+        # Import the logic we just wrote in default.nix
+        ecmasl-stuff = import ./default.nix { inherit pkgs; };
+      in
+      {
+        # 'packages' lets you run 'nix build' locally to test
+        packages = {
+          default = ecmasl-stuff.ecmasl-vim;
+          grammar = ecmasl-stuff.ecmasl-grammar;
         };
-      in {
-        packages.default = ecmasl-vim;
-        devShells.default = pkgs.mkShell {
-          buildInputs = [ pkgs.tree-sitter ];
+
+        # This allows you to reference them in your system config
+        overlays.default = final: prev: {
+          ecmasl-vim = ecmasl-stuff.ecmasl-vim;
+          ecmasl-grammar = ecmasl-stuff.ecmasl-grammar;
         };
-      });
+      }
+    );
 }
