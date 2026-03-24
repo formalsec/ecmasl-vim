@@ -1,0 +1,12 @@
+{
+  "name": "tree-sitter-ecmasl",
+  "version": "1.0.0",
+  "description": "ECMA-SL grammar for tree-sitter",
+  "main": "bindings/node",
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.0"
+  },
+  "dependencies": {
+    "nan": "^2.14.2"
+  }
+}

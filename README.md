@@ -1,29 +1,45 @@
-# ECMA-SL Syntax Highlighting for Vim
+# ECMA-SL Neovim Plugin
 
-Vim plugin for the ECMA-SL (ECMAScript-like) language.
+Vim/Neovim plugin for the ECMA-SL (ECMAScript-like) language, featuring Tree-sitter support.
 
 ## Features
 
-- Full syntax highlighting for:
-  - Keywords (`if`, `else`, `while`, `function`, etc.)
-  - Booleans and constants
-  - Strings with escape sequences
-  - Numbers (integers, floats, hex, octal, binary)
-  - Comments (single-line `//` and multi-line `/* */`)
-  - Type annotations
-  - Function calls and declarations
-  - Operators (`+`, `-`, `*`, `/`, `==`, `!=`, etc.)
-  - Standard library functions
-- Filetype detection (`*.esl`)
-- Proper `commentstring` and `iskeyword` settings
-- Syntax syncing for better performance in large files
+- **Tree-sitter Support**: Highly accurate syntax highlighting, indentation, and folding.
+- **Vim Syntax Support**: Fallback regex-based highlighting for older Vim versions.
+- **Filetype Detection**: Automatically handles `.esl` files.
 
 ## Installation
+
+### Neovim with `nvim-treesitter` (Recommended)
+
+Using [lazy.nvim](https://github.com/folke/lazy.nvim):
+
+```lua
+{
+  "yourusername/ecmasl-vim",
+  dependencies = { "nvim-treesitter/nvim-treesitter" },
+  config = function()
+    require("ecmasl").setup()
+    -- Then run :TSInstall ecmasl
+  end
+}
+```
+
+Or manually with `vim-plug`:
+
+```vim
+Plug 'yourusername/ecmasl-vim'
+" After install, in your init.lua:
+" require('ecmasl').setup()
+" Then run :TSInstall ecmasl
+```
+
+### Regular Vim
 
 Using [vim-plug](https://github.com/junegunn/vim-plug):
 
 ```vim
-Plug 'username/ecmasl-vim'
+Plug 'yourusername/ecmasl-vim'
 ```
 
 ## License
