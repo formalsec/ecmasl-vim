@@ -104,8 +104,8 @@
 (ctx_vars_target (identifier) @variable.parameter)
 
 ; Object properties (initialization and lookup)
-(field_init_target (identifier) @property)
-(lookup_target (identifier) @property)
+(field_init_target (identifier) @variable.member)
+(lookup_target (identifier) @variable.member)
 
 ; Labels or specific patterns
 (match_discrm_target (identifier) @variable.parameter)

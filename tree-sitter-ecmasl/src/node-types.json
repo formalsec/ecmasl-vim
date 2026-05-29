@@ -106,6 +106,7 @@
   {
     "type": "comment",
     "named": true,
+    "extra": true,
     "fields": {}
   },
   {
@@ -657,6 +658,7 @@
   {
     "type": "prog_target",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -1274,11 +1276,11 @@
   },
   {
     "type": "float",
-    "named": true
+    "named": false
   },
   {
     "type": "float",
-    "named": false
+    "named": true
   },
   {
     "type": "float_to_int",
@@ -1398,11 +1400,11 @@
   },
   {
     "type": "symbol",
-    "named": true
+    "named": false
   },
   {
     "type": "symbol",
-    "named": false
+    "named": true
   },
   {
     "type": "throw",

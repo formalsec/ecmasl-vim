@@ -47,14 +47,12 @@ Add this to your `home.nix`:
 }
 ```
 
-Then, in your Neovim config, ensure `nvim-treesitter` is set up:
+Then, in your Neovim config, ensure `nvim-treesitter` is set up (Neovim 0.12+):
 
 ```lua
-require('nvim-treesitter.configs').setup {
-  -- ensure_installed = { "c", "lua", "ecmasl" }, -- You can add ecmasl here
-  highlight = {
-    enable = true,
-  },
+require('nvim-treesitter').setup {
+  -- Note: ensure_installed is no longer in the setup table.
+  -- Use :TSInstall ecmasl or require('nvim-treesitter').install('ecmasl')
 }
 ```
 
@@ -63,10 +61,11 @@ require('nvim-treesitter.configs').setup {
 ```lua
 {
   "yourusername/ecmasl-vim",
-  dependencies = { "nvim-treesitter/nvim-treesitter" },
+  dependencies = { 
+    { "nvim-treesitter/nvim-treesitter", branch = "main" } 
+  },
   config = function()
     require("ecmasl").setup()
-    -- You may need to run :TSInstall ecmasl if not using Nix
   end
 }
 ```
