@@ -21,12 +21,7 @@ Add this to your `home.nix`:
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
-      {
-        plugin = ecmasl-vim;
-        config = ''
-          lua require("ecmasl").setup()
-        '';
-      }
+      ecmasl-vim
     ];
   };
 
@@ -47,14 +42,7 @@ Add this to your `home.nix`:
 }
 ```
 
-Then, in your Neovim config, ensure `nvim-treesitter` is set up (Neovim 0.12+):
-
-```lua
-require('nvim-treesitter').setup {
-  -- Note: ensure_installed is no longer in the setup table.
-  -- Use :TSInstall ecmasl or require('nvim-treesitter').install('ecmasl')
-}
-```
+Then, ensure your grammar is installed (usually via `programs.neovim.plugins` including the grammar or adding it to `treesitter.parsers`).
 
 ### With `lazy.nvim`
 
@@ -64,9 +52,6 @@ require('nvim-treesitter').setup {
   dependencies = { 
     { "nvim-treesitter/nvim-treesitter", branch = "main" } 
   },
-  config = function()
-    require("ecmasl").setup()
-  end
 }
 ```
 

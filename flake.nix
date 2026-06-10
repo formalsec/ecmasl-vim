@@ -1,5 +1,5 @@
 {
-  description = "ECMA-SL Tree-sitter grammar and Vim plugin";
+  description = "ECMA-SL Treesitter grammar and Vim plugin";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
